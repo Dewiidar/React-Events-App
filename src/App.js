@@ -1,26 +1,67 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Slider from './components/Slider'
+import Modal from "./components/Modal";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            applyModalState: {
+                isShown: false
+            }
+        }
+    }
+
+    applyModalHandler = (isShownValue, eventDetails) => {
+        this.setState({
+            ...this.state,
+            eventDetails: eventDetails,
+            applyModalState: {
+                isShown: isShownValue,
+            }
+        })
+    };
+
+    closeModalHandler = () => {
+      this.setState({
+          ...this.state,
+          applyModalState: {
+              isShown: false
+          }
+      })
+    };
+
+
+    render() {
+        let modal;
+        if(this.state.applyModalState.isShown) {
+            modal = <Modal eventDetails={this.state.eventDetails} applyModalState={this.state.applyModalState} closeModalHandler={this.closeModalHandler}/>
+        }
+        return (
+
+            <>
+                {/*Modal*/}
+                {modal}
+
+                {/*Content*/}
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12">
+
+                            {/* Meetups section*/}
+                            <div id="meetups" className="events-container">
+                                <Slider applyModalHandler={this.applyModalHandler}/>
+                            </div>
+                            <hr/>
+
+                        </div>
+                    </div>
+                </div>
+            </>
+        );
+
+    }
 }
 
 export default App;
