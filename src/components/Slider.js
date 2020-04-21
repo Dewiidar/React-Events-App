@@ -330,9 +330,14 @@ class Slider extends Component {
                 </h3>
                 <div className="owl-carousel owl-theme">
                     {this.state.events.map(
-                        event => <Event sectionName={this.props.sectionName} key={event.id} eventDetails={event}
-                                        applyModalHandler={this.props.applyModalHandler}
-                                        descriptionModalHandler={this.props.descriptionModalHandler}/>
+                        event => {
+                            if(this.props.sectionName === 'Premium-only Webinars') {
+                                return <Event sectionName={this.props.sectionName} key={event.id} eventDetails={event} applyModalHandler={this.props.premiumEventModalHandler} descriptionModalHandler={this.props.descriptionModalHandler}/>
+                            } else {
+                             return <Event sectionName={this.props.sectionName} key={event.id} eventDetails={event} applyModalHandler={this.props.applyModalHandler} descriptionModalHandler={this.props.descriptionModalHandler}/>
+                            }
+
+                        }
                     )}
                 </div>
             </>

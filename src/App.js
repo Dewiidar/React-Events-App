@@ -3,6 +3,7 @@ import './App.css';
 import Slider from './components/Slider'
 import ApplyingModal from "./components/ApplyingModal";
 import EventDescriptionModal from "./components/EventDescriptionModal";
+import PremiumEventModal from "./components/PremiumEventModal";
 
 class App extends React.Component {
     constructor(props) {
@@ -12,6 +13,9 @@ class App extends React.Component {
                 isShown: false
             },
             descriptionModalState: {
+                isShown: false
+            },
+            premiumEventModalState: {
                 isShown: false
             }
         }
@@ -39,6 +43,17 @@ class App extends React.Component {
         })
     };
 
+    premiumEventModalHandler = (isShownValue, eventDetails) => {
+        this.scrollToTop();
+        this.setState({
+            ...this.state,
+            eventDetails: eventDetails,
+            premiumEventModalState: {
+                isShown: isShownValue,
+            }
+        })
+    };
+
     closeModalHandler = () => {
         this.setState({
             ...this.state,
@@ -47,6 +62,9 @@ class App extends React.Component {
             },
             descriptionModalState: {
                 isShown: false,
+            },
+            premiumEventModalState: {
+                isShown: false
             }
         })
     };
@@ -57,8 +75,6 @@ class App extends React.Component {
         let scrollAnimation;
         var position =
             document.body.scrollTop || document.documentElement.scrollTop;
-
-        console.log('scrolling');
         if (position) {
             window.scrollBy(0, -Math.max(1, Math.floor(position / 10)));
             scrollAnimation = setTimeout(this.scrollToTop, 30);
@@ -76,6 +92,8 @@ class App extends React.Component {
                                            descriptionModalState={this.state.descriptionModalState}
                                            closeModalHandler={this.closeModalHandler}
                                            applyModalHandler={this.applyModalHandler}/>
+        } else if (this.state.premiumEventModalState.isShown) {
+            modal = <PremiumEventModal eventDetails={this.state.eventDetails} closeModalHandler={this.closeModalHandler} premiumEventModalState={this.state.premiumEventModalState}/>
         }
         return (
 
@@ -118,7 +136,7 @@ class App extends React.Component {
 
                             {/*Premium-only Webinars*/}
                             <div id="premium-webinars" className="events-container">
-                                <Slider sectionName="Premium-only Webinars" applyModalHandler={this.applyModalHandler}
+                                <Slider sectionName="Premium-only Webinars" premiumEventModalHandler={this.premiumEventModalHandler}
                                         descriptionModalHandler={this.descriptionModalHandler}/>
                             </div>
                             <hr/>
