@@ -35,6 +35,8 @@
 }
 .events-container .event-card-container {
   margin: 2px;
+  display: block;
+  position: relative;
   max-width: 220px;
   overflow: hidden;
   font-size: 1em;
@@ -47,11 +49,7 @@
 .events-container .event-card-container:hover {
   box-shadow: 0 0.225rem 0.45rem rgba(0, 0, 0, 0.09);
 }
-.events-container .event-card-container > a {
-  display: block;
-  position: relative;
-}
-.events-container .event-card-container > a .badge {
+.events-container .event-card-container .badge {
   position: absolute;
   width: 80px;
   top: 0;
@@ -120,6 +118,7 @@
 .events-container .event-card-container .apply-button a.apply {
   flex: 4;
   margin: 10px;
+  border-color: inherit;
 }
 .events-container .event-card-container .apply-button a.info {
   flex: 1;
@@ -177,6 +176,22 @@ body.modal-open {
   top: 50%;
   transform: translate(-50%, -50%);
 }
+@media (max-width: 768px) {
+  .modal-dialog {
+    z-index: 999;
+    position: relative;
+    left: unset;
+    top: unset;
+    transform: unset;
+  }
+}
+.modal-dialog.modal-dialog-wide {
+  z-index: 999;
+  position: relative;
+  left: unset;
+  top: unset;
+  transform: unset;
+}
 
 .overlay {
   position: fixed;
@@ -188,28 +203,28 @@ body.modal-open {
   z-index: 99;
 }
 
-.modal {
+.modal-container {
   position: relative;
 }
-.modal .close {
+.modal-container .close {
   position: absolute;
   text-align: end;
   right: 10px;
   top: 3px;
 }
-.modal .modal-content {
+.modal-container .modal-content {
   border: 0;
 }
-.modal .modal-content .hero {
+.modal-container .modal-content .hero {
   height: 320px;
   position: relative;
 }
 @media (max-width: 768px) {
-  .modal .modal-content .hero {
+  .modal-container .modal-content .hero {
     height: 250px;
   }
 }
-.modal .modal-content .hero .hero-img {
+.modal-container .modal-content .hero .hero-img {
   height: 320px;
   background-color: #cccccc;
   background-position: center;
@@ -217,11 +232,11 @@ body.modal-open {
   background-size: cover;
 }
 @media (max-width: 768px) {
-  .modal .modal-content .hero .hero-img {
+  .modal-container .modal-content .hero .hero-img {
     height: 250px;
   }
 }
-.modal .modal-content .hero .apply-btn-container {
+.modal-container .modal-content .hero .apply-btn-container {
   position: absolute;
   bottom: 10px;
   left: 0;
@@ -231,66 +246,66 @@ body.modal-open {
   align-items: center;
   flex-flow: column;
 }
-.modal .modal-content .hero .apply-btn-container .apply {
+.modal-container .modal-content .hero .apply-btn-container .apply {
   width: 200px;
   color: white;
   font-weight: bold;
   margin-bottom: 10px;
 }
-.modal .modal-content .hero .share-btns-container {
+.modal-container .modal-content .hero .share-btns-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.modal .modal-content .hero .share-btns-container * {
+.modal-container .modal-content .hero .share-btns-container * {
   margin-right: 5px;
 }
-.modal .modal-content .hero .share-btns-container a img {
+.modal-container .modal-content .hero .share-btns-container a img {
   width: 40px;
 }
-.modal .modal-content .hero img {
+.modal-container .modal-content .hero img {
   width: 100%;
 }
-.modal .modal-content .modal-body .section-container .section-title h3 {
+.modal-container .modal-content .modal-body .section-container .section-title h3 {
   text-align: center;
   margin-bottom: 20px;
 }
-.modal .modal-content .modal-body .section-container .apply {
+.modal-container .modal-content .modal-body .section-container .apply {
   width: 200px;
   color: white;
   font-weight: bold;
 }
-.modal .modal-content .modal-body .section-container .speaker-cards .speaker-card {
+.modal-container .modal-content .modal-body .section-container .speaker-cards .speaker-card {
   text-align: center;
 }
-.modal .modal-content .modal-body .section-container .speaker-cards .speaker-card img {
+.modal-container .modal-content .modal-body .section-container .speaker-cards .speaker-card img {
   max-width: 100%;
 }
-.modal .modal-content .modal-body .section-container .speaker-cards .speaker-card .speaker-name {
+.modal-container .modal-content .modal-body .section-container .speaker-cards .speaker-card .speaker-name {
   margin-top: 15px;
 }
-.modal .modal-content .modal-body .section-container .stats-cards .stats-card {
+.modal-container .modal-content .modal-body .section-container .stats-cards .stats-card {
   text-align: center;
 }
-.modal .modal-content .modal-body .section-container .sponsors-logos {
+.modal-container .modal-content .modal-body .section-container .sponsors-logos {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
-.modal .modal-content .modal-body .section-container .sponsors-logos .logo {
+.modal-container .modal-content .modal-body .section-container .sponsors-logos .logo {
   width: 100px;
   height: auto;
   margin-bottom: 10px;
 }
-.modal .modal-content .modal-body .section-container .sponsors-logos .logo img {
+.modal-container .modal-content .modal-body .section-container .sponsors-logos .logo img {
   width: 100%;
 }
-.modal .modal-content .modal-body .section-container .sponsors-logos .logo + .logo {
+.modal-container .modal-content .modal-body .section-container .sponsors-logos .logo + .logo {
   margin-left: 10px;
 }
 @media (min-width: 576px) {
-  .modal .modal-dialog-wide {
+  .modal-container .modal-dialog-wide {
     max-width: 90%;
   }
 }

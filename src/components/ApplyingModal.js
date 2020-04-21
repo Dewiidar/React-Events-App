@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class Modal extends Component {
+class ApplyingModal extends Component {
     constructor(props) {
         super(props);
 
@@ -12,9 +12,6 @@ class Modal extends Component {
             zip: '',
             hasApplied: false
         };
-
-        // this.handleChange = this.handleChange.bind(this);
-        // this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange = (event) => {
@@ -37,27 +34,29 @@ class Modal extends Component {
                 <>
                     <div className="overlay" onClick={this.props.closeModalHandler}/>
                     {/*Apply to event form modal*/}
-                    <div className="modal-dialog" role="document">
-                        <div className="modal-content">
-                            <div className="success-message">
-                                <div className="row success-message-content">
-                                    <div className="col-12 alert alert-success center"> You have applied
-                                        successfully, {this.state.firstName}!
+                    <div className="modal-container">
+                        <div className="modal-dialog" role="document">
+                            <div className="modal-content">
+                                <div className="success-message">
+                                    <div className="row success-message-content">
+                                        <div className="col-12 alert alert-success center"> You have applied
+                                            successfully, {this.state.firstName}!
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="row event-details">
-                                    <div className="col-6">
-                                        <div className="event-location-title center"> Location</div>
-                                        <div
-                                            className="event-location-content center"> {this.props.eventDetails.eventLocation}</div>
+                                    <div className="row event-details">
+                                        <div className="col-6">
+                                            <div className="event-location-title center"> Location</div>
+                                            <div
+                                                className="event-location-content center"> {this.props.eventDetails.eventLocation}</div>
+                                        </div>
+                                        <div className="col-6">
+                                            <div className="event-date-title center"> Date</div>
+                                            <div
+                                                className="event-date-content center"> {this.props.eventDetails.eventDay + this.props.eventDetails.eventMonth}</div>
+                                        </div>
+                                        <div className="col-12 center event-url"><a
+                                            href={this.props.eventDetails.eventURL}> Visit Event Page </a></div>
                                     </div>
-                                    <div className="col-6">
-                                        <div className="event-date-title center"> Date</div>
-                                        <div
-                                            className="event-date-content center"> {this.props.eventDetails.eventDay + this.props.eventDetails.eventMonth}</div>
-                                    </div>
-                                    <div className="col-12 center event-url"><a
-                                        href={this.props.eventDetails.eventURL}> Visit Event Page </a></div>
                                 </div>
                             </div>
                         </div>
@@ -135,4 +134,4 @@ class Modal extends Component {
     }
 }
 
-export default Modal;
+export default ApplyingModal;
